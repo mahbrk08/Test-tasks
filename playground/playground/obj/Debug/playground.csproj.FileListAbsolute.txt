@@ -1,0 +1,7 @@
+C:\Users\i7\source\repos\playground\playground\obj\Debug\playground.csprojResolveAssemblyReference.cache
+C:\Users\i7\source\repos\playground\playground\obj\Debug\playground.csproj.CoreCompileInputs.cache
+C:\Users\i7\source\repos\playground\playground\bin\Debug\playground.exe.config
+C:\Users\i7\source\repos\playground\playground\bin\Debug\playground.exe
+C:\Users\i7\source\repos\playground\playground\bin\Debug\playground.pdb
+C:\Users\i7\source\repos\playground\playground\obj\Debug\playground.exe
+C:\Users\i7\source\repos\playground\playground\obj\Debug\playground.pdb
