@@ -12,9 +12,9 @@ namespace playground
 
         static void Main(string[] args)
         {
-            int[] myArray = new int[10];
+            int[] myArray = new int [10];
             
-
+            Random random = new Random();
             int am = 0;
             string selection = Console.ReadLine();
             switch (selection)
@@ -22,7 +22,7 @@ namespace playground
                 case "generate-array":
                     foreach(int x in myArray)
             {
-                Random random = new Random();
+                
                 int rnd = random.Next(myArray.Length);
                 Console.WriteLine(myArray[rnd]);
             }
@@ -31,9 +31,11 @@ namespace playground
                 case "get-array-statistics":
                     foreach(int x in myArray)
                     {
+                        int rnd = random.Next(myArray.Length);
                         am = myArray.Sum() / myArray.Length;
                     }
-                    Console.WriteLine("Максимальное число: "+myArray.Max());
+
+                   Console.WriteLine("Максимальное число: "+myArray.Max());
                     Console.WriteLine("Минимальное число: "+myArray.Min());
                     Console.WriteLine("Среднее арифметическое равно: "+am);
                     break;
