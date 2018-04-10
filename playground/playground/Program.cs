@@ -21,26 +21,28 @@ namespace playground
             switch (selection)
             {
                 case "generate-array":
-                   
-
+                    FileStream file1 = new FileStream(@"C:\\Users\\i7\\source\repos\\playground\arrays.csv", FileMode.Open, FileAccess.ReadWrite);
+                    StreamWriter writer = new StreamWriter(file1);
                        for (int index = 0; index < myArray.Length; index++)
                         {
                             myArray[index] = random.Next();
+                            writer.WriteLine(myArray[index]);
                             Console.WriteLine(myArray[index]);
-                            File.WriteAllText("C:\\Users\\i7\\source\\repos\\playground\\arrays.csv" + myArray[index]); //В этой строчке выдаёт ошибку, код - CS1501 "Ни одна из перезагрузок метода WriteAllText не принимает 1 аргументов"
                         }
-                    
+                    writer.Close();
                     break;
 
                 case "get-array-statistics":
-                    foreach(int x in myArray)
-                    {
-                        int rnd = random.Next();
-                        am = myArray.Sum() / myArray.Length;
+                    FileStream file2 = new FileStream(@"C:\\Users\\i7\\source\repos\\playground\arrays.csv", FileMode.Open, FileAccess.ReadWrite);
+                    StreamReader reader = new StreamReader(file2);
+                    myArray = reader.ReadToEnd();
+                    Console.WriteLine(reader.ReadToEnd());
+
+                    am = myArray.Sum() / myArray.Length;
                         Console.WriteLine("Максимальное число: "+myArray.Max());
                         Console.WriteLine("Минимальное число: "+myArray.Min());
                         Console.WriteLine("Среднее арифметическое равно: "+am);
-                    }
+                    
 
                    
                     break;
