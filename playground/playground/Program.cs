@@ -35,10 +35,18 @@ namespace playground
                 case "get-array-statistics":
                     FileStream file2 = new FileStream(@"C:\\Users\\i7\\source\repos\\playground\arrays.csv", FileMode.Open, FileAccess.ReadWrite);
                     StreamReader reader = new StreamReader(file2);
-                    //int myArray1 = Int32.Parse(reader.ReadToEnd()); Изначально пытался присвоить значение для myArray, но понял что там не int, а int[], ввёл другую переменную, но консоль всё равно ругается)
-                    //Console.WriteLine(myArray1); Вывело ошибку
-                    Console.WriteLine(reader.ReadToEnd());
-                    reader.Close();
+                    string str = null;
+                    str = reader.ReadToEnd();
+                    string[] arr = str.Split(' ');
+                    
+                    int myArray1;
+                    for (int index = 0; index < myArray.Length; index++) 
+                    {                        
+                        
+                        myArray1 = Int32.Parse(arr[index]);
+                        Console.WriteLine(myArray1);
+                        reader.Close();
+                    }
                     //am = myArray.Sum() / myArray.Length;
                         //Console.WriteLine("Максимальное число: "+myArray.Max());
                         //Console.WriteLine("Минимальное число: "+myArray.Min());
