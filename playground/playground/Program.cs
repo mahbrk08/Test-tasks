@@ -13,7 +13,7 @@ using System.Xml.XPath;
 
 namespace playground
 {
-    
+
     public class Program
     {
         public static void GenerateArray()
@@ -35,7 +35,7 @@ namespace playground
             var list = new List<int>();
             using (var file = new FileStream(@"arrays.csv", FileMode.Open, FileAccess.ReadWrite))
             using (var reader = new StreamReader(file))
-                
+
             {
                 var line = reader.ReadLine();
                 while (line != null)
@@ -62,18 +62,17 @@ namespace playground
                 }
             }
 
-           
 
             var am = sum / list.Count;
-            Console.WriteLine("СА "+am);            
-            Console.WriteLine("max "+max);
-            Console.WriteLine("min "+min);
+            Console.WriteLine("СА " + am);
+            Console.WriteLine("max " + max);
+            Console.WriteLine("min " + min);
             Console.ReadLine();
         }
 
-        public static void Swap<T>(ref T a, ref T b)
+        public static void Swap(int a, int b)
         {
-            T temp = a;
+            var temp =a;
             a = b;
             b = temp;
         }
@@ -83,7 +82,7 @@ namespace playground
             var list = new List<int>();
             using (var file = new FileStream(@"arrays.csv", FileMode.Open, FileAccess.ReadWrite))
             using (var reader = new StreamReader(file))
-                
+
             {
                 var line = reader.ReadLine();
                 while (line != null)
@@ -91,40 +90,44 @@ namespace playground
                     list.Add(Int32.Parse(line));
                     line = reader.ReadLine();
                 }
-              
 
-                    for (int j = 0; j < item; j++)
+
+                for (int j = 0; j < line.Length; j++)
+                {
+                    var f = true;
+                    var min = j;
+
+                    for (int i = j + 1; i < line.Length - j;)
                     {
-                        var f = true;
-                        var min = j;
-                        
-                        for (int i = 0; i < item - j;)
+                        if (line[j] > line[i])
                         {
-                            if (list[i]>list[i+1])
-                            {
-                                Swap<int>(list, i, i + 1);
-                                f = false;
-                            } 
-
-                            if (list[i]<list[min])
-                            {
-                                min = i;
-                            }
-
-                            break;
+                            Swap(line[j], line[i]);
+                            f = false;
                         }
-                        
+
+                        if (line[i] < line[min])
+                        {
+                            min = i;
+                        }
+                        do
+                        {
+                            break;
+                        } while (f == true);
+
+                        break;
                     }
-                
+
+                }
+
             }
 
-            
+
 
         }
 
         public static void Main(string[] args)
         {
-            
+
             var commandName = Console.ReadLine();
             switch (commandName)
             {
@@ -135,7 +138,11 @@ namespace playground
                 case "get-array-statistics":
                     GetStatistics();
                     break;
-                   
+
+                case "sort-array":
+                    Sort();
+                    break;
+
                 default:
                     Console.WriteLine("Ошибка");
                     break;
