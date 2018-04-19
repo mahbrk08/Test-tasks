@@ -94,7 +94,6 @@ namespace playground
 
                 for (int j = 0; j < line.Length; j++)
                 {
-                    var f = true;
                     var min = j;
 
                     for (int i = j + 1; i < line.Length - j;)
@@ -102,17 +101,13 @@ namespace playground
                         if (line[j] > line[i])
                         {
                             Swap(line[j], line[i]);
-                            f = false;
+                            
                         }
 
                         if (line[i] < line[min])
                         {
                             min = i;
                         }
-                        do
-                        {
-                            break;
-                        } while (f == true);
 
                         break;
                     }
