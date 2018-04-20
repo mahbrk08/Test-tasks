@@ -91,20 +91,19 @@ namespace playground
                     line = reader.ReadLine();
                 }
 
-
-                for (int j = 0; j < line.Length; j++)
+                for (int j = 0; j < list.Count; j++)
                 {
                     var min = j;
 
-                    for (int i = j + 1; i < line.Length - j;)
+                    for (int i = j + 1; i < list.Count - j;)
                     {
-                        if (line[j] > line[i])
+                        if (list[j] > list[i])
                         {
-                            Swap(line[j], line[i]);
+                            Swap(list[j], list[i]);
                             
                         }
 
-                        if (line[i] < line[min])
+                        if (list[i] < list[min])
                         {
                             min = i;
                         }
@@ -113,7 +112,12 @@ namespace playground
                     }
 
                 }
-
+                    Console.WriteLine("Cортировка:");
+                    for (int x = 0; x < list.Count; x++)
+                    {
+                        Console.WriteLine(list[x]);
+                    }
+                
             }
 
 
@@ -138,9 +142,33 @@ namespace playground
                     Sort();
                     break;
 
+                case "read":
+                    ReadFile();
+                    break;
+
                 default:
                     Console.WriteLine("Ошибка");
                     break;
+            }
+        }
+
+        public static void ReadFile()
+        {
+            var list = new List<int>();
+            using (var file = new FileStream(@"arrays.csv", FileMode.Open, FileAccess.ReadWrite))
+            using (var reader = new StreamReader(file))
+
+            {
+                var line = reader.ReadLine();
+                while (line != null)
+                {
+                    list.Add(Int32.Parse(line));
+                    line = reader.ReadLine();
+                }
+                for (int x = 0; x < list.Count; x++)
+                {
+                    Console.WriteLine(list[x]);
+                }
             }
         }
     }
