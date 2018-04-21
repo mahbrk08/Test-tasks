@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.XPath;
+using Microsoft.Win32.SafeHandles;
 
 namespace playground
 {
@@ -70,11 +71,11 @@ namespace playground
             Console.ReadLine();
         }
 
-        public static void Swap(int a, int b)
+        public static void Swap(int index1, int index2, List<int> arr)
         {
-            var temp =a;
-            a = b;
-            b = temp;
+            var temp = arr[index1];
+            arr[index1] = arr[index2];
+            arr[index2] = temp;
         }
 
         public static void Sort()
@@ -91,33 +92,47 @@ namespace playground
                     line = reader.ReadLine();
                 }
 
-                for (int j = 0; j < list.Count; j++)
-                {
-                    var min = j;
+                var count = 0;
 
-                    for (int i = j + 1; i < list.Count - j;)
+                for (int j = 0; j < list.Count - 1; j++)
+                {
+                    var notSwaped = true;
+                    var min = j;
+                    for (int i = j; i < list.Count - j -1; i++)
                     {
-                        if (list[j] > list[i])
+                        count++;
+                        if (list[i] > list[i+1])
                         {
-                            Swap(list[j], list[i]);
-                            
+                            Swap(i, i+1, list);
+                            notSwaped = false;
                         }
 
                         if (list[i] < list[min])
                         {
                             min = i;
                         }
-
-                        break;
+    
                     }
-
+                    if (notSwaped)
+                    {
+                        break;
+                    }   
+                    
+                    if (min!=j)
+                    {
+                        Swap(j, min, list);
+                    }
+                    
                 }
+                    Console.WriteLine("Количество сравнений "+count);
                     Console.WriteLine("Cортировка:");
                     for (int x = 0; x < list.Count; x++)
                     {
                         Console.WriteLine(list[x]);
+                        
                     }
-                
+
+                Console.ReadLine();
             }
 
 
