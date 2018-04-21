@@ -19,32 +19,20 @@ namespace playground
     {
         public static void GenerateArray()
         {
-            using (var file = new FileStream(@"arrays.csv", FileMode.Create, FileAccess.ReadWrite))
-            using (var writer = new StreamWriter(file))
+            var list = new List<int>();
+            var random = new Random();
+            for (int i = 0; i < 10; i++)
             {
-                var random = new Random();
-                for (var index = 0; index < 10; index++)
-                {
-                    var randomInt = random.Next(1, 100);
-                    writer.WriteLine(randomInt);
-                }
+                var randomInt = random.Next(1, 100);
+                list.Add(randomInt);
             }
+            
+            WriteFile(list);
         }
 
         public static void GetStatistics()
         {
-            var list = new List<int>();
-            using (var file = new FileStream(@"arrays.csv", FileMode.Open, FileAccess.ReadWrite))
-            using (var reader = new StreamReader(file))
-
-            {
-                var line = reader.ReadLine();
-                while (line != null)
-                {
-                    list.Add(Int32.Parse(line));
-                    line = reader.ReadLine();
-                }
-            }
+            var list = ReadFile();
 
             var sum = 0;
             var min = Int32.MaxValue;
@@ -80,17 +68,7 @@ namespace playground
 
         public static void Sort()
         {
-            var list = new List<int>();
-            using (var file = new FileStream(@"arrays.csv", FileMode.Open, FileAccess.ReadWrite))
-            using (var reader = new StreamReader(file))
-
-            {
-                var line = reader.ReadLine();
-                while (line != null)
-                {
-                    list.Add(Int32.Parse(line));
-                    line = reader.ReadLine();
-                }
+                var list = ReadFile();
 
                 var count = 0;
 
@@ -126,14 +104,12 @@ namespace playground
                 }
                     Console.WriteLine("Количество сравнений "+count);
                     Console.WriteLine("Cортировка:");
-                    for (int x = 0; x < list.Count; x++)
-                    {
-                        Console.WriteLine(list[x]);
-                        
-                    }
-
+                    
+            
+                WriteFile(list);
+                WriteConsole(list);
                 Console.ReadLine();
-            }
+            
 
 
 
@@ -141,10 +117,15 @@ namespace playground
 
         public static void Main(string[] args)
         {
-
-            var commandName = Console.ReadLine();
+            var arguments = Console.ReadLine().Split(' ');
+            var commandName = arguments[0];
             switch (commandName)
             {
+                case "search":
+                    Console.WriteLine(Search(Int32.Parse(arguments[1])));
+                    Console.ReadLine();
+                    break;
+                    
                 case "generate-array":
                     GenerateArray();
                     break;
@@ -160,6 +141,14 @@ namespace playground
                 case "read":
                     ReadFile();
                     break;
+                
+                case "swap-array":
+                    SwapArray();
+                    break;
+                
+                case "shuffle-array":
+                    ShuffleArray();
+                    break;
 
                 default:
                     Console.WriteLine("Ошибка");
@@ -167,7 +156,7 @@ namespace playground
             }
         }
 
-        public static void ReadFile()
+        public static List<int> ReadFile()
         {
             var list = new List<int>();
             using (var file = new FileStream(@"arrays.csv", FileMode.Open, FileAccess.ReadWrite))
@@ -180,11 +169,69 @@ namespace playground
                     list.Add(Int32.Parse(line));
                     line = reader.ReadLine();
                 }
-                for (int x = 0; x < list.Count; x++)
+            }
+
+            return list;
+        }
+
+        public static void WriteFile(List<int> list)
+        {
+            using (var file = new FileStream(@"arrays.csv", FileMode.Create, FileAccess.ReadWrite))
+            using (var writer = new StreamWriter(file))
+            {
+                foreach (var item in list)
                 {
-                    Console.WriteLine(list[x]);
+                    writer.WriteLine(item);
                 }
             }
+        }
+
+        public static void WriteConsole(List<int> list)
+        {
+            for (int x = 0; x < list.Count; x++)
+            {
+                Console.WriteLine(list[x]);       
+            }
+        }
+
+        public static void SwapArray()
+        {
+            var list = ReadFile();
+            for (int i = 0; i < list.Count - 1; i += 3)
+            {
+               Swap(i, i+2, list);    
+            }
+            WriteConsole(list);
+            WriteFile(list);
+            Console.ReadLine();
+        }
+
+        public static void ShuffleArray()
+        {
+            var list = ReadFile();
+            var random = new Random();
+            for (int i = 0; i < list.Count; i++)
+            {
+                var rndm = random.Next(0, 9);
+                Swap(i, rndm, list);
+            }
+            WriteConsole(list);
+            WriteFile(list);
+            Console.ReadLine();
+        }
+
+        public static int Search(int value)
+        {
+            var list = ReadFile();
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i] == value)
+                {
+                    return i;
+                }
+            }
+            
+            return -1;
         }
     }
 }
