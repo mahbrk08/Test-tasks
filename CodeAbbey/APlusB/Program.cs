@@ -8,7 +8,13 @@ namespace APlusB
         {
             while (true)
             {
-                var array = Console.ReadLine().Split(' ');
+                var inputData = Console.ReadLine();
+                if (inputData == "exit")
+                {
+                    break;
+                }
+                
+                var array = inputData.Split(new [] {' '}, StringSplitOptions.RemoveEmptyEntries);
                 
                 if (array.Length != 2)
                 {
@@ -23,11 +29,9 @@ namespace APlusB
                 {
                     var sum = a + b;
                     Console.WriteLine(sum);
-                    Console.ReadKey();
-                    break;
+                    Console.WriteLine("Введите еще 2 значения.");
                 }
             }
-
         }
     }
 }
