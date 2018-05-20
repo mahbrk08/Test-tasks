@@ -10,33 +10,35 @@ namespace UlearnHomework
     {
         static void Main(string[] args)
         {
-            ClockAngle();
-            Console.ReadKey();
+			while (true)
+			{
+				ClockAngle();
+			}
         }
 
         public static void Swap(int a, int b)// 1 задача
         {
-
             var temp = a;
             a = b;
             b = temp;
         }
 
-        public static string Switch(string num)//2 задача
+        public static void Switch(int num)//2 задача
         {
+			var firstDigit = num / 100;
+			var secondDigit = (num % 100) / 10;
+			var thirdDigit = (num % 10);
 
-            num = num.Replace(num[0], num[2]);
-            Console.WriteLine(num);
-            return num;
-            
-        }
+			var result = firstDigit + secondDigit * 10 + thirdDigit * 100;
+			Console.WriteLine(result);
+		}
 
         public static void ClockAngle()//3 задача(дописать)
         {
-            //Перед выходом пришла в голову мысль что возможно получится написать код через 2 массива Hours(pm,am)
-            //Которые хранили бы в своих элементах углы.
-            var time = 0;
-            var angle = 0;
+			//Перед выходом пришла в голову мысль что возможно получится написать код через 2 массива Hours(pm,am)
+			//Которые хранили бы в своих элементах углы.
+			var time = Int32.Parse(Console.ReadLine());
+			var angle = 0;
             var dayTime = Console.ReadLine().Split(' ');
             var commandName = dayTime[0];
 
@@ -44,24 +46,10 @@ namespace UlearnHomework
             switch (commandName)
             {
                 case "am":
-                    for (time = Int32.Parse(Console.ReadLine()); time <= 12; time++)
-                    {
-                        angle = 30 * time;
-                        Console.WriteLine(time + " " + angle);
-                    }
-                    break;
+					
 
                 case "pm":
-                    for (time = Int32.Parse(Console.ReadLine()); time <= 12; time++)
-                    {
-                        if (time == 12)
-                        {
-                            angle = 0;
-                        }
-                        angle = 360 - 30*time;
-                        Console.WriteLine(time + " " + angle);
-                    }
-                    break;
+                    
 
             }
 
