@@ -10,7 +10,7 @@ namespace UlearnHomework
     {
         static void Main(string[] args)
         {
-            LeapYear(Int32.Parse(Console.ReadLine()), Int32.Parse(Console.ReadLine()));
+            ClockAngle();
             Console.ReadKey();
         }
 
@@ -33,6 +33,8 @@ namespace UlearnHomework
 
         public static void ClockAngle()//3 задача(дописать)
         {
+            //Перед выходом пришла в голову мысль что возможно получится написать код через 2 массива Hours(pm,am)
+            //Которые хранили бы в своих элементах углы.
             var time = 0;
             var angle = 0;
             var dayTime = Console.ReadLine().Split(' ');
@@ -45,10 +47,21 @@ namespace UlearnHomework
                     for (time = Int32.Parse(Console.ReadLine()); time <= 12; time++)
                     {
                         angle = 30 * time;
-                        Console.WriteLine(angle);
+                        Console.WriteLine(time + " " + angle);
                     }
                     break;
 
+                case "pm":
+                    for (time = Int32.Parse(Console.ReadLine()); time <= 12; time++)
+                    {
+                        if (time == 12)
+                        {
+                            angle = 0;
+                        }
+                        angle = 360 - 30*time;
+                        Console.WriteLine(time + " " + angle);
+                    }
+                    break;
 
             }
 
