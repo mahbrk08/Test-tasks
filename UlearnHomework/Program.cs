@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace UlearnHomework
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
 			while (true)
 			{
-				ClockAngle();
+				var result = LeapYear(Int32.Parse(Console.ReadLine()), Int32.Parse(Console.ReadLine()));
+			    Console.WriteLine(result);
 			}
         }
 
@@ -33,34 +34,35 @@ namespace UlearnHomework
 			Console.WriteLine(result);
 		}
 
-        public static void ClockAngle()//3 задача(дописать)
+        public static void ClockAngle()//3 задача 
         {
-			//Перед выходом пришла в голову мысль что возможно получится написать код через 2 массива Hours(pm,am)
-			//Которые хранили бы в своих элементах углы.
 			var time = Int32.Parse(Console.ReadLine());
 			var angle = 0;
-            var dayTime = Console.ReadLine().Split(' ');
-            var commandName = dayTime[0];
-
-
-            switch (commandName)
+            if (time>12)
             {
-                case "am":
-					
-
-                case "pm":
-                    
-
+                time -= 12;
             }
+            
+            if (time>=6)
+            {
+                angle = 360 - 30 * time;
+            }
+            
+            else
+            {
+                angle = 30 * time;
+            }
+            
+            Console.WriteLine(time + " " + angle);
 
         }
 
-        public static int Divider(int num)//4 задача(дописать)
+        public static int Divider(int num, int x, int y)//4 задача
         {
 
             int divider = 0;
             for (var i = 1; i < num; i++)
-                if (num % i == 0)
+                if (i % x == 0 || i % y  == 0)
                     divider++;
             Console.WriteLine(divider);
 
@@ -71,15 +73,17 @@ namespace UlearnHomework
         {
             var start = a;
             var end = b;
-            var interval = b - a;
             var leap = 0;
-            for (int x = 1; x <= interval; x++)
+            if ((b-a)%4==0)
             {
-                if (x % 4 == 0)
-                leap++;
-                Console.WriteLine(leap);
+                
+                leap = (b - a) / 4 + 1;
             }
-            
+            else
+            {
+                leap = (b - a) / 4;
+            }
+
             return leap;
 
         }
