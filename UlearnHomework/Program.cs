@@ -10,7 +10,7 @@ namespace UlearnHomework
     {
         static void Main(string[] args)
         {
-            Divider(Int32.Parse(Console.ReadLine()));
+            LeapYear(Int32.Parse(Console.ReadLine()), Int32.Parse(Console.ReadLine()));
             Console.ReadKey();
         }
 
@@ -57,13 +57,30 @@ namespace UlearnHomework
         public static int Divider(int num)//4 задача(дописать)
         {
 
-            int counter = 0;
+            int divider = 0;
             for (var i = 1; i < num; i++)
                 if (num % i == 0)
-                    counter++;
-            Console.WriteLine(counter);
+                    divider++;
+            Console.WriteLine(divider);
 
-            return counter;
+            return divider;
+        }
+
+        public static int LeapYear(int a, int b)//5 задача(дописать)
+        {
+            var start = a;
+            var end = b;
+            var interval = b - a;
+            var leap = 0;
+            for (int x = 1; x <= interval; x++)
+            {
+                if (x % 4 == 0)
+                leap++;
+                Console.WriteLine(leap);
+            }
+            
+            return leap;
+
         }
     }
 }
