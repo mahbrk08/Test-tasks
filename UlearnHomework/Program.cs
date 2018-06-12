@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,10 +13,11 @@ namespace UlearnHomework
     {
         static void Main(string[] args)
         {
-			while (true)
+            Console.OutputEncoding = Encoding.UTF8;
+
+            while (true)
 			{
-				var result = LeapYear(Int32.Parse(Console.ReadLine()), Int32.Parse(Console.ReadLine()));
-			    Console.WriteLine(result);
+				Perpendicular();
 			}
         }
 
@@ -69,23 +73,70 @@ namespace UlearnHomework
             return divider;
         }
 
-        public static int LeapYear(int a, int b)//5 задача(дописать)
+        public static int LeapYear(int start, int end) //5 задача
         {
-            var start = a;
-            var end = b;
-            var leap = 0;
-            if ((b-a)%4==0)
+            return GetYearsDividedBy(start, end, 4) - 
+                   GetYearsDividedBy(start, end, 100) +
+                   GetYearsDividedBy(start, end, 400);
+        }
+
+        private static int GetYearsDividedBy(int start, int end, int divider) //5 задача
+        {
+            var result = 0;
+            var yearsToLeap = start % divider;
+            if (start % divider == 0)
             {
-                
-                leap = (b - a) / 4 + 1;
+                result = (end - start) / divider + 1;
             }
             else
             {
-                leap = (b - a) / 4;
+                result = (end - start + yearsToLeap) / divider;
             }
 
-            return leap;
+            return result;
+        }
 
+        public static double GetDistance() //6 задача
+        {
+            var vector = ReadVector();
+            var point0 = GetPoint("Ведите координаты точки, до которой нужно найти расстояние");
+            return Math.Abs(vector.a*point0.x + vector.b*point0.y + vector.c)/Math.Sqrt(vector.a*vector.a + vector.b*vector.b);
+        }
+
+        private static (double x, double y) GetPoint(string message)
+        {
+            Console.WriteLine(message);
+            var x = Double.Parse(Console.ReadLine());
+            var y = Double.Parse(Console.ReadLine());
+            
+            return (x, y);
+        }
+
+        /// <summary>
+        /// Просит ввести две точки на прямой
+        /// </summary>
+        /// <returns>Вохвращает коэффициенты в уравнении прямой</returns>
+        private static (double a, double b, double c) ReadVector()
+        {
+            var point1 = GetPoint("Ведите координаты первой точки на прямой");
+            var point2 = GetPoint("Ведите координаты второй точки на прямой");
+            var varA = point1.y - point2.y;
+            var varB = point2.x - point1.x;
+            var varC = point1.x * point2.y - point2.x * point1.y;
+            return (varA, varB, varC);
+        }
+
+        public static void ParallelsLines()
+        {
+            var vector = ReadVector();
+            Console.WriteLine($"Параллельная прямая: {vector.a}x + {vector.b}y + c1 = 0, где c1 != {vector.c}");
+
+        }
+
+        public static void Perpendicular()
+        {
+            var vector = ReadVector();
+            Console.WriteLine($"Перпенликулярная прямая: {vector.b}x - {vector.a}y + c2 = 0");
         }
     }
 }
