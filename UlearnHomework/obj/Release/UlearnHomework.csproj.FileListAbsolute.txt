@@ -1,0 +1,16 @@
+C:\Users\i7\source\repos\UlearnHomework\bin\Release\UlearnHomework.exe.config
+C:\Users\i7\source\repos\UlearnHomework\bin\Release\UlearnHomework.exe
+C:\Users\i7\source\repos\UlearnHomework\bin\Release\UlearnHomework.pdb
+C:\Users\i7\source\repos\UlearnHomework\bin\Release\xunit.abstractions.dll
+C:\Users\i7\source\repos\UlearnHomework\bin\Release\xunit.assert.dll
+C:\Users\i7\source\repos\UlearnHomework\bin\Release\xunit.core.dll
+C:\Users\i7\source\repos\UlearnHomework\bin\Release\xunit.execution.desktop.dll
+C:\Users\i7\source\repos\UlearnHomework\bin\Release\xunit.abstractions.xml
+C:\Users\i7\source\repos\UlearnHomework\bin\Release\xunit.assert.xml
+C:\Users\i7\source\repos\UlearnHomework\bin\Release\xunit.core.xml
+C:\Users\i7\source\repos\UlearnHomework\bin\Release\xunit.execution.desktop.xml
+C:\Users\i7\source\repos\UlearnHomework\obj\Release\UlearnHomework.csprojResolveAssemblyReference.cache
+C:\Users\i7\source\repos\UlearnHomework\obj\Release\UlearnHomework.csproj.CoreCompileInputs.cache
+C:\Users\i7\source\repos\UlearnHomework\obj\Release\UlearnHomework.csproj.CopyComplete
+C:\Users\i7\source\repos\UlearnHomework\obj\Release\UlearnHomework.exe
+C:\Users\i7\source\repos\UlearnHomework\obj\Release\UlearnHomework.pdb
