@@ -138,20 +138,17 @@ namespace UlearnHomework
 
         public static void Sum() //10 задача (Найти сумму всех положительных чисел меньше 1000 кратных 3 или 5.)
         {
-            int n = 0;
-                for(n = 0; n<1000; n++)
-            {
-                if (n % 3 == 0 && n % 5 == 0)
-                {
-                    n = n + n;
-                    Console.WriteLine(n);
-                    n++;
-                }
-                
-            }
-                
-            
+            int number;
+            int sum = 0;
 
+            for (number = 1; number < 1000; number++)
+            {
+                if (number % 3 == 0 || number % 5 == 0)
+                {
+                    sum += number;
+                }
+            }
+            Console.WriteLine(sum);
         }
     }
 }
