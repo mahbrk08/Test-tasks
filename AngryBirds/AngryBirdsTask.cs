@@ -13,9 +13,7 @@ namespace AngryBirds
 		public static double FindSightAngle(double v, double distance)
 		{
             double g = 9.8;
-            double l = distance;
-            double arcsin = l*g/v*v;
-            return 1 / 2 * Math.Asin(arcsin);
+            return 0.5 * Math.Asin(distance * g / (v * v));
         }
         public static void main()
         {

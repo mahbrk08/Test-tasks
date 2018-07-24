@@ -14,8 +14,8 @@ namespace UlearnHomework
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-
-            Sum();
+            while(true)
+            AdvancedClockAngle();
         }
 
         public static void Swap(int a, int b)// 1 задача
@@ -138,17 +138,54 @@ namespace UlearnHomework
 
         public static void Sum() //10 задача (Найти сумму всех положительных чисел меньше 1000 кратных 3 или 5.)
         {
-            int number;
-            int sum = 0;
-
-            for (number = 1; number < 1000; number++)
+            int n = 0;
+                for(n = 0; n<1000; n++)
             {
-                if (number % 3 == 0 || number % 5 == 0)
+                if (n % 3 == 0 && n % 5 == 0)
                 {
-                    sum += number;
+                    n = n + n;
+                    Console.WriteLine(n);
+                    n++;
                 }
+                
             }
-            Console.WriteLine(sum);
+                           
+        }
+
+        public static void AdvancedClockAngle() //11 задача(Дано время в часах и минутах. Найти угол от часовой к минутной стрелке на обычных часах.)
+        {
+            var hours = Int32.Parse(Console.ReadLine());
+            var minutes = Int32.Parse(Console.ReadLine());
+            var oneHourAngle = 30;
+            var oneMinuteAngle = 6;
+            var angle = 0; /*hours * 30 + minutes / 60 * 30*/
+            if (hours * oneHourAngle >= minutes * oneMinuteAngle)
+            {
+                angle = hours * oneHourAngle - minutes * oneMinuteAngle;
+            }
+            else
+            {
+                angle = minutes * oneMinuteAngle - hours * oneHourAngle;
+            }
+
+            Console.WriteLine(angle);
+        }
+
+        public static void PassangerComfort() //12 Задача
+        {
+            var height = Int32.Parse(Console.ReadLine());
+            var time = Int32.Parse(Console.ReadLine());
+            var speedPerSecond = Int32.Parse(Console.ReadLine());
+            var x = ;
+        }
+
+        public static double GoatFeast(double length, double rope)
+        {
+            var fieldSquare = length * length;
+            var ropeSquare = rope * rope * Math.PI;
+            var eatenSquare = 0.0;
+            return eatenSquare;
         }
     }
+
 }
