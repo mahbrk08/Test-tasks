@@ -6,17 +6,17 @@ namespace PlaygroundUlearn
     {
         static void Main(string[] args)
         {
-            Calculate();
+                Calculate(Console.ReadLine());
         }
 
-        public static double Calculate()
+        public static double Calculate(string userInput)
         {
-            double sum = Double.Parse(Console.ReadLine().Split(' '));
-            double interestRate = Double.Parse(Console.ReadLine().Split(' '));
-            double duration = Double.Parse(Console.ReadLine());
-            double capitalazation = sum / 100 * interestRate * duration / 12;
-            Console.WriteLine(sum + capitalazation);
-            return sum + capitalazation;
+            string[] tokens = userInput.Split();
+            double result;
+            double sum = Double.Parse(tokens[0]);
+            double interestRate = Double.Parse(tokens[1]);
+            double duration = Double.Parse(tokens[2]);
+            return result = sum * Math.Pow(1 + (interestRate / (100 * 12)), duration);
         }
 
     }
