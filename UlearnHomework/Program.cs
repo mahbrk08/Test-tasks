@@ -176,7 +176,7 @@ namespace UlearnHomework
             var height = Int32.Parse(Console.ReadLine());
             var time = Int32.Parse(Console.ReadLine());
             var speedPerSecond = Int32.Parse(Console.ReadLine());
-            var x = ;
+            var x = 0;
         }
 
         public static double GoatFeast(double length, double rope)
@@ -184,6 +184,11 @@ namespace UlearnHomework
             var fieldSquare = length * length;
             var ropeSquare = rope * rope * Math.PI;
             var eatenSquare = 0.0;
+            if (length < 2 * rope)
+            {
+                double angle = Math.Acos(length / 2 / rope);
+                eatenSquare -= 4 * (angle * rope * rope - length / 2 * rope * Math.Sin(angle));
+            }
             return eatenSquare;
         }
     }
