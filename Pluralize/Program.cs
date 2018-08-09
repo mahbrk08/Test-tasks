@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace Pluralize
 {
@@ -25,6 +26,7 @@ namespace Pluralize
 			}
 			if (!hasErrors)
 				Console.WriteLine("Correct!");
+                Console.ReadKey();
 		}
 	}
 }
